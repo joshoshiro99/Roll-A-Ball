@@ -66,10 +66,6 @@ public class playerController : MonoBehaviour
         {
             downforce = 0;
         }
-        if (other.gameObject.CompareTag("final"))
-        {
-            downforce = 0;
-        }
     }
 
 }

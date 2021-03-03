@@ -8,6 +8,7 @@ public class playerController : MonoBehaviour
 {
     public float speed = 0;
     public float boost = 10;
+    public float jumpForce = 10;
     public TextMeshProUGUI countText;
     public GameObject winText;
     public GameObject door;
@@ -16,6 +17,8 @@ public class playerController : MonoBehaviour
     private int count;
     private float movementx;
     private float movementy;
+    private int jumps = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,10 +34,14 @@ public class playerController : MonoBehaviour
         movementx = movementVector.x;
         movementy = movementVector.y;
     }
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        float jumpInput = context.ReadValue<float>();
+    }
 
     void SetCountText()
     {
-        countText.text = "Count: " + count.ToString();
+        countText.text = "Jumps: " + jumps.ToString();
         if(count>=12)
         {
             winText.SetActive(true);
@@ -47,18 +54,12 @@ public class playerController : MonoBehaviour
         Vector3 movement = new Vector3(movementx, 0.0f, movementy);
 
         rb.AddForce(movement*speed);
+
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        
-        if (other.gameObject.CompareTag("Pickup"))
-        {
-            other.gameObject.SetActive(false);
-            speed++;
-            count++;
-            SetCountText();
-        }
         
         if(other.gameObject.CompareTag("SpeedBoost"))
         {
@@ -66,10 +67,10 @@ public class playerController : MonoBehaviour
             rb.AddForce(movement*boost);
         }
 
-        if(other.gameObject.CompareTag("SpeedPickup"))
+        if(other.gameObject.CompareTag("jumps"))
         {
             other.gameObject.SetActive(false);
-            boost = boost + 5;
+            jumps++;
             count++;
             SetCountText();
         }

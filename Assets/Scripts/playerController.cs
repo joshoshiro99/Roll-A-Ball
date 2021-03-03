@@ -24,7 +24,7 @@ public class playerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         count = 0;
         SetCountText();
-        winText.SetActive(false);
+        winText.SetActive(true);
     }
 
     public void OnMove(InputValue movementValue)
@@ -61,10 +61,15 @@ public class playerController : MonoBehaviour
             other.gameObject.SetActive(false);
             count++;
             SetCountText();
+            winText.SetActive(false);
         }
         if(other.gameObject.CompareTag("speedupdone"))
         {
             downforce = 0;
+        }
+        if(other.gameObject.CompareTag("final"))
+        {
+            rb.velocity = Vector3.zero;
         }
     }
 

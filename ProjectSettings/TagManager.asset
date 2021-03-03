@@ -7,6 +7,8 @@ TagManager:
   - Pickup
   - SpeedBoost
   - jumps
+  - speedupdone
+  - final
   layers:
   - Default
   - TransparentFX

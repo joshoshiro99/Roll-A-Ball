@@ -1114,11 +1114,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8000ef178d467c3489ac415900719142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  downforce: 5
+  sideforce: 5
   speed: 10
   boost: 350
   countText: {fileID: 1561986633}
   winText: {fileID: 1340449298}
-  door: {fileID: 0}
+  distanceText: {fileID: 0}
+  rb: {fileID: 933093184}
 --- !u!114 &933093190
 MonoBehaviour:
   m_ObjectHideFlags: 0
